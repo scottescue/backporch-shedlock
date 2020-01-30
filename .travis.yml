@@ -1,0 +1,29 @@
+dist: trusty
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - openjdk-6-jdk
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libaio1
+
+language: java
+jdk:
+  - oraclejdk8
+
+script:
+  - mvn test javadoc:javadoc
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+cache:
+  directories:
+    - $HOME/.embedmysql
+    - $HOME/.embedpostgresql
+    - $HOME/.m2
