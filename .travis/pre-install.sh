@@ -1,4 +1,4 @@
 #!/bin/sh
 set -xe
 
-cp travis-toolchains.xml ~/.m2/toolchains.xml
+cp $TRAVIS_BUILD_DIR/.travis/travis-toolchains.xml ~/.m2/toolchains.xml
