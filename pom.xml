@@ -11,7 +11,7 @@
     <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>backporchshedlock-core</module>
         <module>backporchshedlock-test-support</module>
