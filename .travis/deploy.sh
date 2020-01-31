@@ -78,7 +78,7 @@ gpg --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import $SCRIP
 gpg --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --import $SCRIPT_DIR/signingkey.asc
 
 # Run maven deploy using the GPG keyrings that were just created
-mvn -B deploy --settings $SCRIPT_DIR/travis-settings.xml -DperformPublish=true -DskipTests=true \
+mvn -B deploy --settings $SCRIPT_DIR/travis-settings.xml -DperformRelease=true -DskipTests=true \
   -Dgpg.executable=gpg \
   -Dgpg.keyname=7864B9898031AB6B12A30F454FAB1612925B41AE \
   -Dgpg.passphrase=$PASSPHRASE \
