@@ -5,7 +5,7 @@ function abort {
 }
 
 function is_valid_tag {
-    if [[ ! $1 =~ ^v[0-9]\.[0-9]\.[0-9]\-[0-9]$ ]]; then
+    if [[ ! $1 =~ ^v[0-9]\.[0-9]\.[0-9]$ ]]; then
         return 1
     fi
 }
@@ -72,9 +72,15 @@ fi
 # All validations have succeeded at this point. Let's publish!
 printf "Deploying ${DEPLOY_TYPE} version ${POM_VERSION}\n\n"
 
+# Import the public and private GPG keys into new keyrings
 SCRIPT_DIR="$TRAVIS_BUILD_DIR/.travis"
+gpg --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import $SCRIPT_DIR/signingkey.asc
+gpg --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --import $SCRIPT_DIR/signingkey.asc
 
-openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $SCRIPT_DIR/pubring.gpg.enc -out $SCRIPT_DIR/pubring.gpg -d
-openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $SCRIPT_DIR/secring.gpg.enc -out $SCRIPT_DIR/secring.gpg -d
-
-mvn -B deploy --settings $SCRIPT_DIR/travis-settings.xml -DperformPublish=true -DskipTests=true
+# Run maven deploy using the GPG keyrings that were just created
+mvn -B deploy --settings $SCRIPT_DIR/travis-settings.xml -DperformPublish=true -DskipTests=true \
+  -Dgpg.executable=gpg \
+  -Dgpg.keyname=7864B9898031AB6B12A30F454FAB1612925B41AE \
+  -Dgpg.passphrase=$PASSPHRASE \
+  -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg \
+  -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg

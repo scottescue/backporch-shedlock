@@ -2,25 +2,33 @@ dist: trusty
 addons:
   apt:
     packages:
-      - openjdk-6-jdk
+    - openjdk-6-jdk
 install:
-  - .travis/pre-install.sh
+- ".travis/pre-install.sh"
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 script:
-  - mvn test javadoc:javadoc
+- mvn test javadoc:javadoc
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: script
-  script: .travis/publish.sh
+  script: ".travis/deploy.sh"
   skip_cleanup: true
   on:
     all_branches: true
-    condition: $TRAVIS_BRANCH =~ ^(master|release\/.*|v[0-9]\.[0-9]\.[0-9])$
+    condition: "$TRAVIS_BRANCH =~ ^(master|release\\/.*|v[0-9]\\.[0-9]\\.[0-9])$"
 cache:
   directories:
-    - $HOME/.embedmysql
-    - $HOME/.embedpostgresql
-    - $HOME/.m2
+  - "$HOME/.embedmysql"
+  - "$HOME/.embedpostgresql"
+  - "$HOME/.m2"
+env:
+  global:
+  - secure: pZEwH3Fkj/NCluMJrmiffR9M5uvJXkp6PngYbgvqdaUlicUv+fEZJ09JgA5XxtVHde2Oz4/DtTx/0AhY84B5Z9vll3ChlAr7ca9L0ORbK578maTsPaCbJunLnJBFwF53aWeOfk47AejCd2nL2Eedn/hUpyxTO03S7UUOW3AheOOmKccc6xL1S45weeyib3QSQQhdC9T020s0ee74ZUgDZNckIkXudp0rl6lUrxSRT+RoQT2fmgtVc6swEi6+xNVcO6k6kIouDCqD5qpYL4yyzLevCLhLyFdsMPgWPtjPei99ejM+PsrbgfAUbakMGBi437whL40Vubm/N2LhpAvIndM2W6pfp5LP9yCWG1/OrOzD/k7rKHKz3DgMQ40xX8WwOsSt0c9yD8Qu5I6A3fNZF9FhpW6SmHr8gXO7IkZpvkB43kh1PMpa3Pr2slECAZQMD4FWgLkFZHvjsZtRrUNr3jYjQkP6oq1qv15JcgR62bvG9x4ZWCMXd+U12QZBv4CNtuni/SvZNnqMoc8CoOUd74oM2upZb3EMDY6Srs4tlIFgCo+2ldGxTxVDi+aePVjPzsY+fYRwXhnbU/SICNgBw8Z+4dVNGsekw17h/SeVp6Mw19LVAChX5Zyq05GrHqUFUAfK/zzX2zxw8mZ2UyYdk60Bz39lA2PiiWs4u4pOS8M=
+  - secure: iCkoCJ4YaQH8oj00psSbhR/QCIvy7Gc08Ri888MneD0uG6Utd87qZ5Rt4J6kNgcKvmgRfN2RnIZBtPojzsX0AGmJEVESWRzL54zB9dSLSWicemZXNa0R56hGcRQi0ZnZzWVI4AbhtxKkkBkq502JgszN3hG+9uwKrYPkxwXsnGMnDRoSanGsfGHgbAmPG513gJ6aaTX8zD1ZT2rcn8chq0bXvoq7OZGafDcukgd1qubRervgzD8IlmQMSsC5+0dwSJCkmhI4SSqeFK+RHlImEyZJu3bfkzikpfk6VcRcqmSuy05OdIKmJEJJk0GzN8tUYTGLCaN9NgZgLGGcCillK13Q8rhcADqIypp6+HWOi4hMqbUru1inDFfQEai/bqhVtOgIuSf+e0ceDTh6Cw7DpE3cebQspP0JpE+S72sg52Umrpognm7WzEgTg2kN+7LQHMg7uIQdQveOUAibIidIpB8eOeZAUusIhU4HwY00fBF5XqjljULJlZApp+KIX+7AqsLbuUe3FSpRTuYE+33Ra4Ds2iLZburVBR66Zxm1+rbW0NF9PHQ1gR20+d/i/lM0PUwxvXxJv7H0CF/U6PuGFzqhziUAZPOH7FhR+PpkG8dEUnzkwoRtVIXv+e4C9iDPtrMhgbp7K0r0rOzegJMYzqQwbIT7FevQxjLuJXGFASc=
+  - secure: CBncTKAZW6G+inXhf8s3G6KOdVV4QY+0hQuT6+RM+1mAm2NG9HwU1IzxJVLh26UWZebI0XVTloUW8O4mBX71bSxOIZ+FY5nuWbNoHC2KmkUP37pe1UI6AYVLv5qfvJ2/vofHIGAkFNJdkRYOJtEjqmfAwg/WC7Iam9D6rT1NaN8xmnRP5AVDXttPVaPJ4t56wXspXVRjf0oMCj0J1F/Xb998QV1TN8IhKo8zYrHvri4M08HxDYTFMx0H+G8c324+uwKUpx5UBDTXbFoBymnx/1xYK9ZS+RL3hWmkwSCJgSs0W2m1yi4twcOX1QCcdgTfr4svhFBNhAi4RWFF3hdoBkKY9WcHfNAmz1R0JYP4bWoc1DIzT0EmidjjUCHldoKmRsdUMsSnFMe7cTOFmQxyN1eBRobwd38/VqOP6omhUR4OMO5WmxuU6f88wkLYAMceucSqEbw9qE0YyUAuRvFtEi+NblAoOpjPamdIrBo72XeyGw19JbE6fGtYAS89Gt2+Rw0NRjBpawzxNqDoagco6nDqhD5k8pvh6xwjXdAzu6Yl/g4l+JhalMyA5yi8NobzZEW/SRqIlamzf3/iP2hN1N3WoveAZOJ5eGxpcWjd7mDTu329kbshgr0P+zqGtRBP0OUnq9J3An/n+quggg7aJ6PLRpNjtSoIWRndz/JZrhs=
+before_install:
+- openssl aes-256-cbc -K $encrypted_cd5cfcc2147d_key -iv $encrypted_cd5cfcc2147d_iv
+  -in .travis/signingkey.asc.enc -out .travis/signingkey.asc -d
