@@ -8,10 +8,6 @@ addons:
     packages:
       - openjdk-6-jdk
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libaio1
-
 install:
   - .ci-pre-install.sh
 
