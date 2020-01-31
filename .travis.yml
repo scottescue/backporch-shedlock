@@ -9,7 +9,7 @@ addons:
       - openjdk-6-jdk
 
 install:
-  - .ci-pre-install.sh
+  - ./.ci-pre-install.sh
 
 language: java
 jdk:
