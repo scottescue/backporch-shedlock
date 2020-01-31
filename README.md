@@ -1,6 +1,7 @@
 BackPorch ShedLock :wink:
 ========
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Build Status](https://travis-ci.org/scottescue/backporch-shedlock.svg?branch=master)](https://travis-ci.org/scottescue/backporch-shedlock)
 
 # BE AWARE
 ## This library should only be used in projects that are stuck on Java 6 or 7. If you're running Java 8 or newer, you should most definitely be using [ShedLock](https://github.com/lukas-krecan/ShedLock), the library from which this project was back-ported.
@@ -52,9 +53,9 @@ First of all, we have to import the project
 
 ```xml
 <dependency>
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-core</artifactId>
-    <version>4.1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -81,6 +82,7 @@ class MySpringConfiguration {
  ```java
 
 ...
+import org.threeten.bp.Instant;
 
 @Autowired
 LockingTaskExecutor executor;
@@ -134,7 +136,7 @@ Add dependency
 
 ```xml
 <dependency>
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-provider-jdbc-template</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -177,7 +179,7 @@ Import the project
 
 ```xml
 <dependency>
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-provider-hazelcast</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -210,6 +212,7 @@ after each other, `lockAtLeastUntil` can prevent it.
 
 ## Requirements and dependencies
 * Java 6
+* ThreeTen-Backport - backport of the Java 8 date-time classes 
 * slf4j-api
 
 # Change log
