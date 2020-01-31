@@ -1,23 +1,24 @@
 dist: trusty
-
 addons:
   apt:
     packages:
       - openjdk-6-jdk
-
 install:
   - .travis/pre-install.sh
-
 language: java
 jdk:
   - oraclejdk8
-
 script:
   - mvn test javadoc:javadoc
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
+deploy:
+  provider: script
+  script: .travis/publish.sh
+  skip_cleanup: true
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(master|release\/.*|v[0-9]\.[0-9]\.[0-9])$
 cache:
   directories:
     - $HOME/.embedmysql
