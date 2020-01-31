@@ -73,7 +73,7 @@ fi
 printf "Deploying ${DEPLOY_TYPE} version ${POM_VERSION}\n\n"
 
 # Import the public and private GPG keys into new keyrings
-SCRIPT_DIR="$TRAVIS_BUILD_DIR/.travis"
+SCRIPT_DIR="$TRAVIS_BUILD_DIR/.ci-scripts"
 gpg --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import $SCRIPT_DIR/signingkey.asc
 gpg --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --import $SCRIPT_DIR/signingkey.asc
 
