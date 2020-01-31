@@ -1,15 +1,12 @@
 dist: trusty
 
-services:
-  - docker
-
 addons:
   apt:
     packages:
       - openjdk-6-jdk
 
 install:
-  - ./.ci-pre-install.sh
+  - .travis/pre-install.sh
 
 language: java
 jdk:

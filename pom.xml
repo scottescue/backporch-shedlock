@@ -250,10 +250,43 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <!-- Writes properties from the POM to project.properties, which shell scripts can source -->
+            <id>write-project-properties</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <POM_VERSION>${project.version}</POM_VERSION>
+                <POM_SCM_TAG>${project.scm.tag}</POM_SCM_TAG>
+                <POM_URL>${project.url}</POM_URL>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>properties-maven-plugin</artifactId>
+                        <version>1.0.0</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>write-project-properties</goal>
+                                </goals>
+                                <configuration>
+                                    <outputFile>${project.build.directory}/project.properties</outputFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <scm>
         <connection>scm:git@github.com:scottescue/backporch-shedlock.git</connection>
         <developerConnection>scm:git@github.com:scottescue/backporch-shedlock.git</developerConnection>
         <url>scm:git@github.com:scottescue/backporch-shedlock.git</url>
+        <tag>HEAD</tag>
     </scm>
 </project>

@@ -1,6 +1,7 @@
 BackPorch ShedLock :wink:
 ========
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Build Status](https://travis-ci.org/scottescue/backporch-shedlock.svg?branch=master)](https://travis-ci.org/scottescue/backporch-shedlock)
 
 # BE AWARE
 ## This library should only be used in projects that are stuck on Java 6 or 7. If you're running Java 8 or newer, you should most definitely be using [ShedLock](https://github.com/lukas-krecan/ShedLock), the library from which this project was back-ported.
