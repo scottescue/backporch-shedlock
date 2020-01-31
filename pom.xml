@@ -16,7 +16,7 @@
         </developer>
     </developers>
 
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
