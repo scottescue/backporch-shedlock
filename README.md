@@ -52,9 +52,9 @@ First of all, we have to import the project
 
 ```xml
 <dependency>
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-core</artifactId>
-    <version>4.1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -81,6 +81,7 @@ class MySpringConfiguration {
  ```java
 
 ...
+import org.threeten.bp.Instant;
 
 @Autowired
 LockingTaskExecutor executor;
@@ -134,7 +135,7 @@ Add dependency
 
 ```xml
 <dependency>
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-provider-jdbc-template</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -177,7 +178,7 @@ Import the project
 
 ```xml
 <dependency>
-    <groupId>com.scottescue.backporchshedlock</groupId>
+    <groupId>com.scottescue</groupId>
     <artifactId>backporchshedlock-provider-hazelcast</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -210,6 +211,7 @@ after each other, `lockAtLeastUntil` can prevent it.
 
 ## Requirements and dependencies
 * Java 6
+* ThreeTen-Backport - backport of the Java 8 date-time classes 
 * slf4j-api
 
 # Change log
