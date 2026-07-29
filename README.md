@@ -19,7 +19,8 @@ Please note, that **if one task is already being executed on one node, execution
 BackPorch ShedLock uses either a JDBC database or Hazelcast external store. 
 
 My bandwidth for back porting providers from ShedLock was extremely limited. I only back ported what I absolutely needed. 
-Pull requests that back port other providers are welcome!
+
+This repository is preserved as an unmaintained portfolio/reference project. I am not accepting feature requests or support requests for production use.
 
 #### BackPorch ShedLock is not a distributed scheduler
 Please note that BackPorch ShedLock is not and will never be full-fledged scheduler, it's just a lock. If you need a distributed scheduler, please use another project.
