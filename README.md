@@ -1,7 +1,6 @@
 BackPorch ShedLock
 ========
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
-[![Build Status](https://travis-ci.com/scottescue/backporch-shedlock.svg?branch=master)](https://travis-ci.com/scottescue/backporch-shedlock)
 
 > **Status:** Unmaintained portfolio/reference project.
 
