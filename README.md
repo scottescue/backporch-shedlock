@@ -1,17 +1,17 @@
-BackPorch ShedLock :wink:
+BackPorch ShedLock
 ========
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 [![Build Status](https://travis-ci.com/scottescue/backporch-shedlock.svg?branch=master)](https://travis-ci.com/scottescue/backporch-shedlock)
 
-# BE AWARE
-## This library should only be used in projects that are stuck on Java 6 or 7. If you're running Java 8 or newer, you should most definitely be using [ShedLock](https://github.com/lukas-krecan/ShedLock), the library from which this project was back-ported.
+> **Status:** Unmaintained portfolio/reference project.
 
-This is a back port of the the [ShedLock](https://github.com/lukas-krecan/ShedLock) distributed locking library. 
-BackPorch ShedLock (see what I did there :wink:) allows you to use the core goodness of ShedLock if your application 
-is stuck running on Java 6 or 7.
+BackPorch ShedLock is a Java 6/7 backport of ShedLock created for legacy applications that could not move to Java 8+ at the time. New projects should use the upstream [ShedLock](https://github.com/lukas-krecan/ShedLock) library instead.
 
-This project's code and most of the documentation has been copied from the upstream. Many thanks to Lukas Krecan for creating 
-and doing an amazing job supporting and maintaining the upstream ShedLock project.
+This repository is preserved as a portfolio artifact and reference implementation for constrained legacy environments. I do not actively maintain it, review dependency updates, or provide support for production use.
+
+The project preserves the core distributed-locking behavior needed to prevent equivalent scheduled tasks from running concurrently across application nodes. It includes attribution and license notices for the upstream ShedLock project.
+
+---
 
 BackPorch ShedLock makes sure that your scheduled tasks are executed at most once at the same time. 
 If a task is being executed on one node, it acquires a lock which prevents execution of the same task from another node (or thread). 
